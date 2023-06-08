@@ -3,6 +3,7 @@ const btnRgb = document.createElement('button')
 const btnEraser = document.createElement('button')
 const btnReset = document.createElement('buttons')
 const section = document.querySelector('.section');
+const btnSize = document.createElement('button')
 const buttonsContainer = document.querySelector('.buttons');
 
 
@@ -62,3 +63,28 @@ function Reset() {
     buttonsContainer.appendChild(btnReset).classList.add('btn')
 }
 Reset()
+
+
+
+function reSize() {
+   
+    btnSize.textContent = 'GRID SIZE'
+    btnSize.addEventListener('click', () => {
+        let user = prompt('WHAT SIZE YOU WANT YOUR GRID TO BE?')
+        if(user === null || user < 1){
+            Reset();
+            createDiv(16,16);
+            grayColor();
+            RGBcolor();
+            blackColor();
+        } else { 
+            Reset();
+            createDiv(user,user);
+            grayColor();
+            RGBcolor();
+            blackColor();
+        }
+    })
+    buttonsContainer.appendChild(btnSize).classList.add('btn')
+}
+reSize()
