@@ -5,15 +5,21 @@ const btnReset = document.createElement('buttons')
 const section = document.querySelector('.section');
 const btnSize = document.createElement('button')
 const buttonsContainer = document.querySelector('.buttons');
+const gridSizeInput = document.createElement('input')
+
+gridSizeInput.type = 'range';
+  gridSizeInput.min = '2';
+  gridSizeInput.max = '13';
+  gridSizeInput.value = '16';
 
 
-
-function createDiv(col , rows) {
-    for(let i = 0; i < (col * rows); i++) {
-        const div = document.createElement('div') 
-        container.style.gridTemplateColumns = `repeat(${col}, 1fr)`;
+function createDiv(cols , rows) {
+    for (let i = 0; i < rows * cols; i++) {
+        container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
         container.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-        container.appendChild(div).classList.add('box')
+        const div = document.createElement('div');
+        div.classList.add('box');
+        container.appendChild(div);
     }
 }
 createDiv(16,16)
@@ -68,9 +74,9 @@ Reset()
 
 function reSize() {
    
-    btnSize.textContent = 'GRID SIZE'
-    btnSize.addEventListener('click', () => {
-        let user = prompt('WHAT SIZE YOU WANT YOUR GRID TO BE?')
+    
+    gridSizeInput.addEventListener('click', () => {
+        let user = gridSizeInput.value;
         if(user === null || user < 1){
             Reset();
             createDiv(16,16);
@@ -85,6 +91,7 @@ function reSize() {
             blackColor();
         }
     })
-    buttonsContainer.appendChild(btnSize).classList.add('btn')
+    buttonsContainer.appendChild(gridSizeInput);
 }
 reSize()
+
